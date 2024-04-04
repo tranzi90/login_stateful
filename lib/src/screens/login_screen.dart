@@ -14,8 +14,30 @@ class _LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.all(20.0),
       child: Form(
         child: Column(
-          children: [],
+          children: [
+            emailField(),
+            passwordField(),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget emailField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Email Address',
+        hintText: 'you@host.com',
+      ),
+      keyboardType: TextInputType.emailAddress,
+    );
+  }
+
+  Widget passwordField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Password',
+        hintText: 'Password',
       ),
     );
   }
