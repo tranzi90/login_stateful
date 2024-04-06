@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_stateful/src/mixins/validation_mixin.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -7,7 +8,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -37,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         hintText: 'you@host.com',
       ),
       keyboardType: TextInputType.emailAddress,
+      validator: validateEmail,
     );
   }
 
@@ -51,7 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget submitButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        print(formKey.currentState?.validate());
+      },
       child: Text('Submit!'),
       style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
     );
